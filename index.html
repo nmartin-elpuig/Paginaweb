@@ -28,7 +28,10 @@ header{
   padding:20px;
 }
 
-h1{color:var(--accent);margin:0}
+h1{
+  color:var(--accent);
+  margin:0;
+}
 
 .ranking{
   display:flex;
@@ -62,7 +65,9 @@ h1{color:var(--accent);margin:0}
   box-shadow:0 10px 30px rgba(0,0,0,.4);
 }
 
-.card:hover{transform:translateY(-8px)}
+.card:hover{
+  transform:translateY(-8px);
+}
 
 .card img{
   width:100%;
@@ -70,9 +75,14 @@ h1{color:var(--accent);margin:0}
   object-fit:cover;
 }
 
-.content{padding:15px}
+.content{
+  padding:15px;
+}
 
-h2{color:var(--green);margin:0}
+h2{
+  color:var(--green);
+  margin:0;
+}
 
 .btn{
   display:inline-block;
@@ -85,16 +95,23 @@ h2{color:var(--green);margin:0}
   margin-right:6px;
 }
 
-.download{background:linear-gradient(135deg,#2563eb,#3b82f6)}
-.github{background:linear-gradient(135deg,#0ea5e9,#06b6d4)}
-.play{background:linear-gradient(135deg,#22c55e,#16a34a)}
+.download{
+  background:linear-gradient(135deg,#2563eb,#3b82f6);
+}
+
+.github{
+  background:linear-gradient(135deg,#0ea5e9,#06b6d4);
+}
+
+.play{
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+}
 
 .meta{
   font-size:.75rem;
   opacity:.8;
   margin-top:5px;
 }
-
 </style>
 </head>
 
@@ -111,8 +128,10 @@ h2{color:var(--green);margin:0}
 
 <div class="container">
 
+<!-- FLAPPY BIRD -->
 <div class="card" data-id="flappy">
 <img src="https://programamos.es/web/wp-content/uploads/2016/10/flappybird.jpg">
+
 <div class="content">
 <h2>FlappyBird</h2>
 
@@ -123,43 +142,117 @@ h2{color:var(--green);margin:0}
    🎮 Jugar
 </a>
 
-<a class="btn download" href="https://github.com/nmartin-elpuig/FlappyBird/releases/download/v1.0/FlappyBird-main.zip" onclick="downloadGame('flappy')">Descargar</a>
-<a class="btn github" href="https://github.com/nmartin-elpuig/proyecto">GitHub</a>
+<a class="btn download"
+   href="https://github.com/nmartin-elpuig/FlappyBird/releases/download/v1.0/FlappyBird-main.zip"
+   onclick="downloadGame('flappy')">
+   Descargar
+</a>
 
-<div class="meta">👀 Visitas: <span id="flappyV">0</span> · 📥 <span id="flappyD">0</span></div>
+<a class="btn github"
+   href="https://github.com/nmartin-elpuig/proyecto">
+   GitHub
+</a>
+
+<div class="meta">
+👀 Visitas: <span id="flappyV">0</span> · 📥 <span id="flappyD">0</span>
+</div>
+
 </div>
 </div>
 
+<!-- SPACE INVADER -->
 <div class="card" data-id="space">
 <img src="https://repository-images.githubusercontent.com/951086522/26f54ffb-8f82-4dab-8daa-ce5f9ccbf1f2">
+
 <div class="content">
 <h2>SpaceInvader</h2>
-<a class="btn play" href="https://nacho-elpuig.itch.io/webspace" target="_blank" onclick="addVisit('space')">🎮 Jugar</a>
-<a class="btn download" href="https://github.com/nmartin-elpuig/SpaceInvader/releases/download/V1.0/SpaceInvader-main.zip" onclick="downloadGame('space')">Descargar</a>
-<a class="btn github" href="https://github.com/nmartin-elpuig/SpaceInvader">GitHub</a>
-<div class="meta">👀 Visitas: <span id="spaceV">0</span> · 📥 <span id="spaceD">0</span></div>
+
+<a class="btn play"
+   href="https://nacho-elpuig.itch.io/webspace"
+   target="_blank"
+   onclick="addVisit('space')">
+   🎮 Jugar
+</a>
+
+<a class="btn download"
+   href="https://github.com/nmartin-elpuig/SpaceInvader/releases/download/V1.0/SpaceInvader-main.zip"
+   onclick="downloadGame('space')">
+   Descargar
+</a>
+
+<a class="btn github"
+   href="https://github.com/nmartin-elpuig/SpaceInvader">
+   GitHub
+</a>
+
+<div class="meta">
+👀 Visitas: <span id="spaceV">0</span> · 📥 <span id="spaceD">0</span>
+</div>
+
 </div>
 </div>
 
+<!-- JETPACK -->
 <div class="card" data-id="jetpack">
 <img src="https://play-lh.googleusercontent.com/ombetvA16LmQb1_meog0znsCk4pKcpXA2iRyZLwP8FboxiVvWvufVmqSyLYz1YK4F1PyqZO9Q6AyrGP-kaFr=w526-h296-rw">
+
 <div class="content">
 <h2>Jetpack</h2>
-<a class="btn play" href="https://nacho-elpuig.itch.io/webjetpack" target="_blank" onclick="addVisit('jetpack')">🎮 Jugar</a>
-<a class="btn download" href="https://github.com/nmartin-elpuig/Jetpack/releases/download/untagged-a71b8cefc69f74260e94/Jetpack-main.zip" onclick="downloadGame('jetpack')">Descargar</a>
-<a class="btn github" href="https://github.com/nmartin-elpuig/Jetpack">GitHub</a>
-<div class="meta">👀 Visitas: <span id="jetpackV">0</span> · 📥 <span id="jetpackD">0</span></div>
+
+<a class="btn play"
+   href="https://nacho-elpuig.itch.io/webjetpack"
+   target="_blank"
+   onclick="addVisit('jetpack')">
+   🎮 Jugar
+</a>
+
+<a class="btn download"
+   href="https://github.com/nmartin-elpuig/Jetpack/releases/download/untagged-a71b8cefc69f74260e94/Jetpack-main.zip"
+   onclick="downloadGame('jetpack')">
+   Descargar
+</a>
+
+<a class="btn github"
+   href="https://github.com/nmartin-elpuig/Jetpack">
+   GitHub
+</a>
+
+<div class="meta">
+👀 Visitas: <span id="jetpackV">0</span> · 📥 <span id="jetpackD">0</span>
+</div>
+
 </div>
 </div>
 
+<!-- COINDASH -->
 <div class="card" data-id="coindash">
 <img src="imagenes/coindash.jpg">
+
 <div class="content">
 <h2>CoinDash</h2>
-<a class="btn play" href="juegos/coindash/index.html" target="_blank" onclick="addVisit('coindash')">🎮 Jugar</a>
-<a class="btn download" href="descargas/coindash.zip" onclick="downloadGame('coindash')">Descargar</a>
-<a class="btn github" href="https://github.com/nmartin-elpuig/Coindash_H-N">GitHub</a>
-<div class="meta">👀 Visitas: <span id="coindashV">0</span> · 📥 <span id="coindashD">0</span></div>
+
+<a class="btn play"
+   href="juegos/coindash/index.html"
+   target="_blank"
+   onclick="addVisit('coindash')">
+   🎮 Jugar
+</a>
+
+<a class="btn download"
+   href="descargas/coindash.zip"
+   onclick="downloadGame('coindash')">
+   Descargar
+</a>
+
+<a class="btn github"
+   href="https://github.com/nmartin-elpuig/Coindash_H-N">
+   GitHub
+</a>
+
+<div class="meta">
+👀 Visitas: <span id="coindashV">0</span> · 📥 <span id="coindashD">0</span>
+</div>
+
 </div>
 </div>
 
@@ -170,44 +263,52 @@ h2{color:var(--green);margin:0}
 let games=["flappy","space","jetpack","coindash"];
 
 function addVisit(id){
-let v=localStorage.getItem(id+"_v")||0;
-v++;
-localStorage.setItem(id+"_v",v);
-update();
+  let v=localStorage.getItem(id+"_v")||0;
+  v++;
+  localStorage.setItem(id+"_v",v);
+  update();
 }
 
 function downloadGame(id){
-let d=localStorage.getItem(id+"_d")||0;
-d++;
-localStorage.setItem(id+"_d",d);
-update();
+  let d=localStorage.getItem(id+"_d")||0;
+  d++;
+  localStorage.setItem(id+"_d",d);
+  update();
 }
 
 function update(){
-let total=0;
-let ranking=[];
 
-games.forEach(g=>{
-let v=Number(localStorage.getItem(g+"_v")||0);
-let d=Number(localStorage.getItem(g+"_d")||0);
+  let total=0;
+  let ranking=[];
 
-document.getElementById(g+"V").innerText=v;
-document.getElementById(g+"D").innerText=d;
+  games.forEach(g=>{
 
-total+=v;
-ranking.push({name:g,visits:v});
-});
+    let v=Number(localStorage.getItem(g+"_v")||0);
+    let d=Number(localStorage.getItem(g+"_d")||0);
 
-document.getElementById("totalV").innerText=total;
-ranking.sort((a,b)=>b.visits-a.visits);
-document.getElementById("top1").innerText=ranking[0].name;
+    document.getElementById(g+"V").innerText=v;
+    document.getElementById(g+"D").innerText=d;
+
+    total+=v;
+
+    ranking.push({
+      name:g,
+      visits:v
+    });
+
+  });
+
+  document.getElementById("totalV").innerText=total;
+
+  ranking.sort((a,b)=>b.visits-a.visits);
+
+  document.getElementById("top1").innerText=ranking[0].name;
+
 }
 
-games.forEach(g=>addVisit(g));
 update();
 
 </script>
 
 </body>
 </html>
-
