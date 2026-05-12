@@ -2,17 +2,18 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>H&N Games Hub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>H&N Games Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
-  --bg:#070d18;
+  --bg:#050816;
   --card:#111827;
-  --text:#f1f5f9;
+  --text:#f8fafc;
   --accent:#38bdf8;
   --green:#22c55e;
 }
@@ -26,11 +27,23 @@
 body{
   font-family:Poppins,sans-serif;
   background:
-    radial-gradient(circle at top,#10203d,#070d18 70%);
+  radial-gradient(circle at top,#10203d,#050816 70%);
   color:var(--text);
+  overflow-x:hidden;
 }
 
-/* PORTADA */
+/* SCROLL */
+
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#1e40af;
+  border-radius:20px;
+}
+
+/* HERO */
 
 .hero{
   width:100%;
@@ -43,129 +56,176 @@ body{
 .hero img{
   width:100%;
   max-width:900px;
-  border-radius:25px;
-  box-shadow:0 0 40px rgba(0,0,0,.6);
-  border:3px solid rgba(255,255,255,.08);
+  border-radius:30px;
+  box-shadow:
+  0 0 50px rgba(0,0,0,.8),
+  0 0 30px rgba(59,130,246,.25);
+  border:3px solid rgba(255,255,255,.06);
 }
 
 /* TITULO */
 
 header{
   text-align:center;
-  padding:10px 20px 30px;
+  padding:10px 20px 35px;
 }
 
 h1{
-  font-size:3rem;
+  font-size:3.5rem;
+  font-weight:800;
   color:var(--accent);
-  text-shadow:0 0 20px rgba(56,189,248,.5);
+  text-shadow:
+  0 0 15px rgba(56,189,248,.6),
+  0 0 35px rgba(56,189,248,.3);
 }
 
 .sub{
-  opacity:.8;
   margin-top:10px;
+  opacity:.8;
   font-size:1rem;
 }
 
-/* RANKING */
+/* STATS */
 
 .ranking{
   display:flex;
   justify-content:center;
   gap:15px;
   flex-wrap:wrap;
-  margin-top:20px;
+  margin-top:25px;
 }
 
 .rank-box{
   background:rgba(255,255,255,.05);
-  padding:10px 15px;
-  border-radius:12px;
-  backdrop-filter:blur(6px);
-  box-shadow:0 5px 20px rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.05);
+  padding:12px 18px;
+  border-radius:15px;
+  backdrop-filter:blur(8px);
+  box-shadow:0 8px 25px rgba(0,0,0,.35);
+  font-weight:600;
 }
 
-/* JUEGOS */
+/* CARDS */
 
 .container{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
-  padding:30px;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px;
   max-width:1200px;
   margin:auto;
+  padding:30px;
 }
 
 .card{
-  background:linear-gradient(180deg,#182235,#101827);
-  border-radius:22px;
+  background:
+  linear-gradient(180deg,#172338,#0f172a);
+  border-radius:24px;
   overflow:hidden;
-  transition:.3s;
-  box-shadow:0 15px 35px rgba(0,0,0,.5);
+  transition:.35s;
+  box-shadow:0 18px 40px rgba(0,0,0,.55);
   border:1px solid rgba(255,255,255,.05);
+  position:relative;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+  180deg,
+  rgba(255,255,255,.03),
+  transparent);
+  pointer-events:none;
 }
 
 .card:hover{
-  transform:translateY(-10px) scale(1.02);
+  transform:
+  translateY(-10px)
+  scale(1.02);
 }
 
 .card img{
   width:100%;
-  height:200px;
+  height:220px;
   object-fit:cover;
 }
 
 .content{
-  padding:18px;
+  padding:20px;
 }
 
 h2{
   color:var(--green);
-  margin-bottom:10px;
+  margin-bottom:12px;
+  font-size:1.7rem;
 }
+
+.desc{
+  opacity:.8;
+  font-size:.92rem;
+  line-height:1.5;
+  margin-bottom:14px;
+}
+
+/* BOTONES */
 
 .btn{
   display:inline-block;
-  margin-top:8px;
-  padding:10px 14px;
-  border-radius:12px;
+  padding:10px 15px;
+  border-radius:14px;
   text-decoration:none;
   color:white;
   font-size:.9rem;
-  font-weight:600;
-  margin-right:6px;
+  font-weight:700;
+  margin-right:8px;
+  margin-top:10px;
   transition:.2s;
 }
 
 .btn:hover{
-  transform:scale(1.05);
-}
-
-.download{
-  background:linear-gradient(135deg,#2563eb,#3b82f6);
-}
-
-.github{
-  background:linear-gradient(135deg,#0891b2,#06b6d4);
+  transform:scale(1.06);
 }
 
 .play{
-  background:linear-gradient(135deg,#22c55e,#16a34a);
+  background:
+  linear-gradient(135deg,#22c55e,#16a34a);
+}
+
+.download{
+  background:
+  linear-gradient(135deg,#2563eb,#3b82f6);
+}
+
+.github{
+  background:
+  linear-gradient(135deg,#0891b2,#06b6d4);
 }
 
 .meta{
-  font-size:.8rem;
-  opacity:.8;
-  margin-top:12px;
+  margin-top:15px;
+  font-size:.82rem;
+  opacity:.75;
 }
 
 /* FOOTER */
 
 footer{
   text-align:center;
-  padding:30px;
+  padding:40px 20px;
   opacity:.6;
   font-size:.9rem;
+}
+
+@media(max-width:700px){
+
+  h1{
+    font-size:2.4rem;
+  }
+
+  .hero img{
+    border-radius:20px;
+  }
+
 }
 
 </style>
@@ -174,33 +234,41 @@ footer{
 <body>
 
 <!-- PORTADA -->
+
 <div class="hero">
-  <img src="portada.jpg" alt="Minijuegos H&N">
+  <img src="https://github.com/nmartin-elpuig/Paginaweb/releases/download/V1.0/31A012D9-505C-4530-A2FA-1B8F9B20AC2F.png" alt="H&N Games Hub">
 </div>
+
+<!-- HEADER -->
 
 <header>
 
 <h1>🎮 H&N Games Hub</h1>
 
 <p class="sub">
-Los mejores minijuegos creados por H&N
+Disfruta de los mejores minijuegos arcade creados por H&N
 </p>
 
 <div class="ranking">
+
   <div class="rank-box">
     🏆 Juego Top: <span id="top1">-</span>
   </div>
 
   <div class="rank-box">
-    👀 Total visitas: <span id="totalV">0</span>
+    👀 Total Visitas: <span id="totalV">0</span>
   </div>
+
 </div>
 
 </header>
 
+<!-- JUEGOS -->
+
 <div class="container">
 
 <!-- FLAPPY -->
+
 <div class="card" data-id="flappy">
 
 <img src="https://programamos.es/web/wp-content/uploads/2016/10/flappybird.jpg">
@@ -208,6 +276,10 @@ Los mejores minijuegos creados por H&N
 <div class="content">
 
 <h2>FlappyBird</h2>
+
+<p class="desc">
+Esquiva obstáculos y consigue la máxima puntuación en este clásico arcade.
+</p>
 
 <a class="btn play"
 href="https://nacho-elpuig.itch.io/web"
@@ -219,12 +291,12 @@ onclick="addVisit('flappy')">
 <a class="btn download"
 href="https://github.com/nmartin-elpuig/FlappyBird/releases/download/v1.0/FlappyBird-main.zip"
 onclick="downloadGame('flappy')">
-Descargar
+📥 Descargar
 </a>
 
 <a class="btn github"
 href="https://github.com/nmartin-elpuig/proyecto">
-GitHub
+💻 GitHub
 </a>
 
 <div class="meta">
@@ -236,6 +308,7 @@ GitHub
 </div>
 
 <!-- SPACE -->
+
 <div class="card" data-id="space">
 
 <img src="https://repository-images.githubusercontent.com/951086522/26f54ffb-8f82-4dab-8daa-ce5f9ccbf1f2">
@@ -243,6 +316,10 @@ GitHub
 <div class="content">
 
 <h2>Space Invader</h2>
+
+<p class="desc">
+Destruye oleadas de enemigos espaciales y salva la galaxia.
+</p>
 
 <a class="btn play"
 href="https://nacho-elpuig.itch.io/webspace"
@@ -254,12 +331,12 @@ onclick="addVisit('space')">
 <a class="btn download"
 href="https://github.com/nmartin-elpuig/SpaceInvader/releases/download/V1.0/SpaceInvader-main.zip"
 onclick="downloadGame('space')">
-Descargar
+📥 Descargar
 </a>
 
 <a class="btn github"
 href="https://github.com/nmartin-elpuig/SpaceInvader">
-GitHub
+💻 GitHub
 </a>
 
 <div class="meta">
@@ -271,6 +348,7 @@ GitHub
 </div>
 
 <!-- JETPACK -->
+
 <div class="card" data-id="jetpack">
 
 <img src="https://play-lh.googleusercontent.com/ombetvA16LmQb1_meog0znsCk4pKcpXA2iRyZLwP8FboxiVvWvufVmqSyLYz1YK4F1PyqZO9Q6AyrGP-kaFr=w526-h296-rw">
@@ -278,6 +356,10 @@ GitHub
 <div class="content">
 
 <h2>Jetpack</h2>
+
+<p class="desc">
+Vuela con tu jetpack evitando obstáculos y recoge monedas.
+</p>
 
 <a class="btn play"
 href="https://nacho-elpuig.itch.io/webjetpack"
@@ -289,12 +371,12 @@ onclick="addVisit('jetpack')">
 <a class="btn download"
 href="https://github.com/nmartin-elpuig/Jetpack/releases/download/untagged-a71b8cefc69f74260e94/Jetpack-main.zip"
 onclick="downloadGame('jetpack')">
-Descargar
+📥 Descargar
 </a>
 
 <a class="btn github"
 href="https://github.com/nmartin-elpuig/Jetpack">
-GitHub
+💻 GitHub
 </a>
 
 <div class="meta">
@@ -307,8 +389,10 @@ GitHub
 
 </div>
 
+<!-- FOOTER -->
+
 <footer>
-© 2025 H&N Games Hub
+© 2025 H&N Games Hub · Todos los derechos reservados
 </footer>
 
 <script>
@@ -318,6 +402,7 @@ let games=["flappy","space","jetpack"];
 function addVisit(id){
 
   let v=localStorage.getItem(id+"_v")||0;
+
   v++;
 
   localStorage.setItem(id+"_v",v);
@@ -328,6 +413,7 @@ function addVisit(id){
 function downloadGame(id){
 
   let d=localStorage.getItem(id+"_d")||0;
+
   d++;
 
   localStorage.setItem(id+"_d",d);
@@ -338,14 +424,17 @@ function downloadGame(id){
 function update(){
 
   let total=0;
+
   let ranking=[];
 
   games.forEach(g=>{
 
     let v=Number(localStorage.getItem(g+"_v")||0);
+
     let d=Number(localStorage.getItem(g+"_d")||0);
 
     document.getElementById(g+"V").innerText=v;
+
     document.getElementById(g+"D").innerText=d;
 
     total+=v;
