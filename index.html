@@ -1,167 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Juego H&N — Plataformas 2D</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --sky: #5bc8f5;
-      --sky-dark: #2a7db5;
-      --green: #5ec94a;
-      --green-dark: #3a8c2a;
-      --brown: #8b5e3c;
-      --yellow: #f5c842;
-      --red: #e84a5f;
-      --blue-char: #5bc8f5;
-      --white: #fff;
-      --dark: #1a1a2e;
-      --pixel-border: 4px solid #1a1a2e;
-    }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--sky);
-      font-family: 'VT323', monospace;
-      color: var(--dark);
-      overflow-x: hidden;
-      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect x='0' y='0' width='8' height='8' fill='%231a1a2e'/%3E%3Crect x='8' y='8' width='8' height='8' fill='%231a1a2e'/%3E%3C/svg%3E") 4 4, auto;
-    }
-
-    /* ── AYUDAS DE PIXEL ── */
-    .pixel-box {
-      border: 4px solid var(--dark);
-      box-shadow: 4px 4px 0 var(--dark);
-      image-rendering: pixelated;
-    }
-    .pixel-btn {
-      display: inline-block;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 0.65rem;
-      padding: 12px 20px;
-      border: 4px solid var(--dark);
-      box-shadow: 4px 4px 0 var(--dark);
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform 0.08s, box-shadow 0.08s;
-      text-align: center;
-    }
-    .pixel-btn:active,
-    .pixel-btn:hover {
-      transform: translate(2px, 2px);
-      box-shadow: 2px 2px 0 var(--dark);
-    }
-    .btn-yellow { background: var(--yellow); color: var(--dark); }
-    .btn-red    { background: var(--red);    color: #fff; }
-    .btn-green  { background: var(--green);  color: #fff; }
-    .btn-sky    { background: var(--sky-dark); color: #fff; }
-
-    /* ── NAVEGACIÓN ── */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      background: var(--dark);
-      border-bottom: 4px solid var(--yellow);
-      padding: 10px 24px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-logo {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 0.75rem;
-      color: var(--yellow);
-      text-decoration: none;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .nav-logo span { color: var(--red); }
-    .nav-links { display: flex; gap: 20px; list-style: none; }
-    .nav-links a {
-      color: #fff;
-      text-decoration: none;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 0.5rem;
-      transition: color 0.1s;
-    }
-    .nav-links a:hover { color: var(--yellow); }
-
-    /* ── SECCIÓN PRINCIPAL ── */
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(180deg, #87ceeb 0%, #5bc8f5 45%, #4ab8e8 60%, #3da8d8 100%);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      position: relative; overflow: hidden; padding-top: 60px;
-    }
-
-    /* Nubes */
-    .cloud {
-      position: absolute;
-      background: #fff;
-      border: 3px solid #ddd;
-      border-radius: 0;
-      image-rendering: pixelated;
-      animation: float-cloud linear infinite;
-    }
-    .cloud::before, .cloud::after {
-      content: '';
-      position: absolute;
-      background: #fff;
-      border: 3px solid #ddd;
-    }
-    /* Nubes pixel con box-shadow */
-    .cloud-1 { width:64px; height:20px; top:12%; left:-80px; animation-duration:28s; animation-delay:-5s; }
-    .cloud-2 { width:80px; height:24px; top:20%; left:-100px; animation-duration:35s; animation-delay:-14s; }
-    .cloud-3 { width:56px; height:18px; top:8%;  left:-70px; animation-duration:22s; animation-delay:-20s; }
-
-    @keyframes float-cloud {
-      from { left: -120px; }
-      to   { left: 110%;  }
-    }
-
-    /* Sol */
-    .sun {
-      position: absolute; top: 80px; right: 80px;
-      width: 48px; height: 48px;
-      background: var(--yellow);
-      border: 4px solid var(--dark);
-      box-shadow: 4px 4px 0 var(--dark);
-      animation: spin-sun 6s linear infinite;
-    }
-    @keyframes spin-sun {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-
-    /* Montañas de fondo */
-    .mountains {
-      position: absolute; bottom: 120px; left: 0; width: 100%;
-      height: 200px;
-      background:
-        /* Pinos oscuros con clip-path */
-        linear-gradient(to bottom, transparent 0%, #1e4d2b 0%);
-      clip-path: polygon(
-        0% 100%, 5% 40%, 10% 100%, 14% 30%, 18% 100%, 22% 50%,
-        27% 100%, 31% 20%, 36% 100%, 40% 45%, 44% 100%, 48% 35%,
-        53% 100%, 57% 25%, 62% 100%, 66% 40%, 70% 100%, 74% 15%,
-        79% 100%, 83% 38%, 87% 100%, 91% 28%, 96% 100%, 100% 100%
-      );
-    }
-
-    /* Suelo */
-    .ground {
-      position: absolute; bottom: 0; left: 0; width: 100%; height: 120px;
-      background: var(--green);
-      border-top: 8px solid var(--dark);
-    }
-    .ground::after {
-      content: '';
-      position: absolute; top: 8px; left: 0; width: 100%; height: 20px;
-      background: var(--green-dark);
-    }
-
-    /* Plataformas */
-    .platform {
       position: absolute;
       background: var(--green);
       border: 4px solid var(--dark);
@@ -475,30 +312,22 @@
       font-size: 1.3rem;
       padding: 12px 14px;
       border: 4px solid var(--dark);
-      background: #fff;
-      outline: none;
       box-shadow: 4px 4px 0 var(--dark);
       margin-bottom: 16px;
-      display: block;
-      transition: box-shadow 0.1s;
+      outline: none;
     }
-    .pixel-input:focus {
-      box-shadow: 6px 6px 0 var(--sky-dark);
-      border-color: var(--sky-dark);
-    }
-    textarea.pixel-input { resize: vertical; min-height: 120px; }
     .field-label {
+      display: block;
       font-family: 'Press Start 2P', monospace;
       font-size: 0.5rem;
+      margin-bottom: 8px;
       color: var(--dark);
-      margin-bottom: 6px;
-      display: block;
     }
 
     /* ── PIE DE PÁGINA ── */
     footer {
       background: var(--dark);
-      padding: 36px 20px;
+      padding: 60px 20px;
       text-align: center;
       border-top: 6px solid var(--yellow);
     }
@@ -603,6 +432,10 @@
     <p class="hero-sub">Salta, recoge monedas y sobrevive. ❤️</p>
     <div class="hero-btns">
       <a href="https://hectoraglo.itch.io/juego-hn" target="_blank" class="pixel-btn btn-yellow">▶ JUGAR</a>
+      <a href="https://github.com/hectoraglo/Juego-H-N" target="_blank" class="pixel-btn btn-dark">
+        <svg style="vertical-align: middle; margin-right: 5px;" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GITHUB
+      </a>
       <a href="#features" class="pixel-btn btn-sky">VER MÁS ↓</a>
     </div>
   </div>
@@ -754,8 +587,8 @@
   <span class="footer-logo">JUEGO H<span>&</span>N</span>
   <p class="footer-made">Hecho con pixel amor ❤️ por <strong>H&amp;N Team</strong> · 2026</p>
   <div class="footer-links">
-    <a href="#">itch.io</a>
-    <a href="#">GitHub</a>
+    <a href="https://hectoraglo.itch.io/juego-hn" target="_blank">itch.io</a>
+    <a href="https://github.com/hectoraglo/Juego-H-N" target="_blank">GitHub</a>
     <a href="#">Twitter</a>
   </div>
 </footer>
